@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Navbar from './Navbar';
@@ -6,6 +6,7 @@ import NavbarPaymentPrice from './NavbarPaymentPrice';
 import SelectCommon from '../common/SelectCommon';
 import DetailPayment from './DetailPayment';
 import TextButton from '../common/TextButton';
+import { connect } from 'react-redux'
 
 const styles = theme => ({
   root: {
@@ -13,34 +14,46 @@ const styles = theme => ({
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
   },
+  button: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: '30px', 
+  }, 
 });
 
-function MainPayment(props) {
-  const { classes } = props;
+class MainPayment extends Component {
+  render () {
+    const { classes } = this.props;
 
-  return (
-    <div>
-        <Navbar />
-        <NavbarPaymentPrice      
-        />
-        <SelectCommon 
-         data={props.WalletData}
-          name='Wallet App Require'
-          helperText='Please Select a Wallet'
+    return (
+      <div>
+          <Navbar />
+          <NavbarPaymentPrice      
           />
-       <SelectCommon
-        data={props.TokenData}
-        name='Token'
-        helperText='Please Select token'
-      />
-      <DetailPayment />
-      <TextButton name="confirm"/>
-    </div>
-  );
+          <SelectCommon 
+           data={this.props.WalletData}
+            name='Wallet App Require'
+            helperText='Please Select a Wallet'
+            />
+         <SelectCommon
+          data={this.props.TokenData}
+          name='Token'
+          helperText='Please Select token'
+        />
+        <DetailPayment />
+        <div className={classes.button}>  <TextButton name="confirm"/></div>
+      
+      </div>
+    );
+  }
+ 
 }
 
 MainPayment.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-
-export default withStyles(styles)(MainPayment);
+const mapStateToProps = state => ({
+  WalletData: state.WalletData,
+  TokenData: state.TokenData
+  })
+export default connect(mapStateToProps)(withStyles(styles)(MainPayment));

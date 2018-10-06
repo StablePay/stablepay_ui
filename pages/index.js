@@ -14,8 +14,8 @@ const styles = theme => ({
     textAlign: 'center'
   }, 
   button: {
-    // display: 'flex',
-    // justifyContent: 'center',
+    display: 'flex',
+    justifyContent: 'center',
     marginTop: '30px', 
   }, 
   logoImage: {
