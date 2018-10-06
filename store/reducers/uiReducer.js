@@ -1,8 +1,9 @@
-import { START_LOADING, STOP_LOADING } from '../actions/constants';
+import { START_LOADING, STOP_LOADING, SHOW_MODAL, CLOSE_MODAL } from '../actions/constants';
 
 
 const INITIAL_STATE = {
-    showSpinner: false,
+    loading: false,
+    loadingMessage: '',
     showModal: false,
     modalType: null 
 }
@@ -12,13 +13,24 @@ export default (state = INITIAL_STATE, action) => {
         case START_LOADING:
             return {
                 ...state,
-                showSpinner: true
+                loading: true
             }
         case STOP_LOADING:
             return {
                 ...state,
-                showSpinner: false
+                loading: false
             }    
+        case SHOW_MODAL:
+            return {
+                ...state,
+                showModal: true,
+                loadingMessage: action.msg
+            }    
+        case CLOSE_MODAL:
+            return {
+                ...state,
+                showModal: false
+            }  
         default:
             return state;
     }

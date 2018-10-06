@@ -4,7 +4,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import Spinner from './Spinner';
 import Grid from '@material-ui/core/Grid';
 
-class SnackbarsMessages extends React.Component {
+class LoadingIndicator extends React.Component {
   state = {
     open: false,
     vertical: 'top',
@@ -15,12 +15,13 @@ class SnackbarsMessages extends React.Component {
     this.setState({ open: true, ...state });
   };
 
-  handleClose = () => {
-    this.setState({ open: false });
-  };
+  // handleClose = () => {
+  //   this.setState({ open: false });
+  // };
 
   render() {
-    const { vertical, horizontal, open } = this.state;
+    const { vertical, horizontal } = this.state;
+    const { show, description, onClose } = this.props;
     return (
       <div>
         <Button onClick={this.handleClick({ vertical: 'top', horizontal: 'center' })}>
@@ -29,8 +30,8 @@ class SnackbarsMessages extends React.Component {
     
         <Snackbar
           anchorOrigin={{ vertical, horizontal }}
-          open={open}
-          onClose={this.handleClose}
+          open={show}
+          onClose={onClose}
           ContentProps={{
             'aria-describedby': 'message-id',
           }}
@@ -40,7 +41,7 @@ class SnackbarsMessages extends React.Component {
            <Spinner />
         </Grid>
         <Grid item sm={8}>
-        {this.props.description}
+        {description}
         </Grid>
            
            </Grid>
@@ -53,4 +54,4 @@ class SnackbarsMessages extends React.Component {
   }
 }
 
-export default SnackbarsMessages;
+export default LoadingIndicator;
