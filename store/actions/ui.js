@@ -1,4 +1,4 @@
-import { START_LOADING, STOP_LOADING } from './constants';
+import { START_LOADING, STOP_LOADING, SHOW_MODAL, CLOSE_MODAL } from './constants';
 
 export const startLoading = () => {
     return {
@@ -9,5 +9,18 @@ export const startLoading = () => {
 export const stopLoading = () => {
     return {
         type: STOP_LOADING
+    }
+}
+
+export const showModal = (message) => {
+    return {
+        type: SHOW_MODAL,
+        msg: message
+    }
+}
+
+export const closeModal = () => {
+    return {
+        type: CLOSE_MODAL
     }
 }

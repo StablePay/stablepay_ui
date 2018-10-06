@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { startLoading, stopLoading } from '../../store/actions/ui';
+import { startLoading, stopLoading, showModal, closeModal } from '../../store/actions/ui';
 import Navbar from './Navbar';
 import NavbarPaymentPrice from './NavbarPaymentPrice';
 import SelectToken from '../common/SelectToken';
@@ -95,10 +95,6 @@ class MainPayment extends Component {
     console.log('Wallet ', value);
   }
 
- handleClick(){
-    console.log('click button')
-   }; 
-
   render () {
     const { classes, loading, loadingMessage, showModal,onClose } = this.props;
 
@@ -123,9 +119,9 @@ class MainPayment extends Component {
           tokenName={this.state.tokenName}
         />
         <DetailPayment exchangeAmount={0.5} tokenName="Eth" />
-  
-   
-        <div className={classes.button}>  <TextButton name="confirm" onClick={this.handleClick}/></div>
+        <div className={classes.button}>  
+          <TextButton name="Confirm Payment" onCl/>
+        </div>
 
         <LoadingIndicator show={showModal} description={loadingMessage} onClose={null}/>
         <CircularIndetermiante show={loading}/>
