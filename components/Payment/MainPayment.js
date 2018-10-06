@@ -12,6 +12,7 @@ import LoadingIndicator from '../common/LoadingIndicator';
 import { ERC20_MAP } from '../../web3/util/addresses';
 import web3 from '../../web3';
 import { loadBalance } from '../../store/actions/token';
+import CircularIndetermiante from '../common/CircularIndetermiante';
 
 
 const styles = theme => ({
@@ -93,6 +94,7 @@ class MainPayment extends Component {
         <div className={classes.button}>  <TextButton name="confirm"/></div>
 
         <LoadingIndicator show={showModal} description={loadingMessage} onClose={null}/>
+        <CircularIndetermiante />
       </div>
     );
   }

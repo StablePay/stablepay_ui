@@ -24,9 +24,9 @@ class LoadingIndicator extends React.Component {
     const { show, description, onClose } = this.props;
     return (
       <div>
-        <Button onClick={this.handleClick({ vertical: 'top', horizontal: 'center' })}>
+        {/* <Button onClick={this.handleClick({ vertical: 'top', horizontal: 'center' })}>
           Top-Center
-        </Button>
+        </Button> */}
     
         <Snackbar
           anchorOrigin={{ vertical, horizontal }}
