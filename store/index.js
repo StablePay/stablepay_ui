@@ -8,7 +8,7 @@ import TokenData from './reducers/tokenReducer'
 const rootReducer = combineReducers({
     token: tokenReducer,
     WalletData: WalletData,
-    TokenData: TokenData,
+    TokenData: TokenData
 })
 
 const getStore = () => {
