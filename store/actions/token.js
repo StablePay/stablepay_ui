@@ -7,7 +7,7 @@ import { KOVAN_CONFIGS } from '../../web3/util/configs';
 import { DECIMALS } from '../../web3/util/constants';
 
 
-export const loadBalance = async (tokenAddress, address) => {
+export const loadBalance = async (symbol, tokenAddress, address) => {
     const contractWrappers = new ContractWrappers(web3.currentProvider, { networkId: KOVAN_CONFIGS.networkId });
     const balanceBaseUnits = await contractWrappers.erc20Token.getBalanceAsync(tokenAddress, address);
 
@@ -15,6 +15,10 @@ export const loadBalance = async (tokenAddress, address) => {
 
     return {
         type: LOAD_TOKEN_BALANCE,
-        balance
+        payload: {
+            balance,
+            address,
+            symbol
+        }
     };
 }

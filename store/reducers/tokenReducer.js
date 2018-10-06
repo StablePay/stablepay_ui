@@ -1,9 +1,9 @@
 import { LOAD_TOKEN_BALANCE } from '../actions/constants';
 
 const INITIAL_STATE = {
-    tokenBalance: null,
-    tokenAddress: null,
-    tokenSymbol: null,
+    balance: null,
+    address: null,
+    symbol: null,
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -11,7 +11,7 @@ export default (state = INITIAL_STATE, action) => {
         case LOAD_TOKEN_BALANCE:
             return {
                 ...state,
-                ...action.tokenInfo
+                ...action.payload
             };         
         default:
             return state;
