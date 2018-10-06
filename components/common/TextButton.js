@@ -15,10 +15,13 @@ const styles = theme => ({
     
   },
 });
+
+
+
 function TextButtons (props) {
   const { classes } = props;
   return (
-    <Button variant="contained" size="large"  href={props.href} className={classes.button}>
+    <Button variant="contained" size="large"  onClick={props.onClick} href={props.href} className={classes.button}>
          {props.name}
         </Button>
   )
