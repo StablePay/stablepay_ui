@@ -1,5 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import {
+    ContractWrappers,
+} from '0x.js';
 import web3 from '../web3';
+import { KOVAN_CONFIGS } from '../web3/util/configs';
 import { EXCHANGE, ZRXTOKEN, DAI } from '../web3/util/addresses';
 import { NULL_ADDRESS, ZERO } from '../web3/util/constants';
 import { createOrder, getRandomFutureDateInSeconds } from '../web3/util/orderUtil';
@@ -10,6 +14,21 @@ class Order extends Component {
         
     }
 
+    _onApprove = async () => {
+        const accounts = await web3.eth.getAccounts();
+        const maker = accounts[0];
+        console.log('account from', accounts[0]);
+        const contractWrappers = new ContractWrappers(web3.currentProvider, { networkId: KOVAN_CONFIGS.networkId });
+        const approvalTxHash = await contractWrappers.erc20Token.setUnlimitedProxyAllowanceAsync(
+            DAI,
+            maker,
+        );
+
+        console.log('txhash', approvalTxHash);
+        console.log('allowance approve');
+
+
+    }
     _onSignOrder = async () => {
         const accounts = await web3.eth.getAccounts();
         console.log('account from', accounts[0]);
