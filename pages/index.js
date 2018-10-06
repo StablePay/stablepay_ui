@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import Head from '../components/head'
 import Nav from '../components/nav'
+import TextButton from '../components/common/TextButton'
 
 const Home = () => (
   <div>
@@ -36,6 +37,7 @@ const Home = () => (
             <p>Was this tool helpful? Let us know how we can improve it</p>
           </a>
         </Link>
+        <TextButton name="Get stated" />
       </div>
     </div>
 
