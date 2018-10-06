@@ -97,7 +97,7 @@ class MainPayment extends Component {
         <div className={classes.button}>  <TextButton name="confirm"/></div>
 
         <LoadingIndicator show={showModal} description={loadingMessage} onClose={null}/>
-        <CircularIndetermiante />
+        <CircularIndetermiante show={loading}/>
       </div>
     );
   }
