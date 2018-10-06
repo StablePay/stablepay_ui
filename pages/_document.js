@@ -30,7 +30,7 @@ class MyDocument extends Document {
             name='theme-color'
             content={pageContext.theme.palette.primary.main}
           />
-          {/* <meta name='viewport' content='width=device-width, initial-scale=1' /> */}
+          <meta name='viewport' content='width=device-width, initial-scale=1' />
 
           <link
             rel='stylesheet'
