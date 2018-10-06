@@ -1,44 +1,46 @@
 import React from 'react'
 import Link from 'next/link'
+import { withStyles } from '@material-ui/core/styles';
 import Head from '../components/head'
 import Nav from '../components/nav'
 import TextButton from '../components/common/TextButton'
+import LogoImage from '../components/Home/LogoImage'
+import LogoName from '../components/Home/LogoName'
 
-const Home = () => (
+const styles = theme => ({
+  button: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: '30px'
+  }, 
+  logoImage: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: '100px'
+  }, 
+  logoName: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: '50px'
+  }
+});
+
+function Home (props) {
+  const { classes } = props;
+return(
   <div>
     <Head title="Home" />
-    <Nav />
+    {/* <Nav /> */}
 
     <div className="hero">
-      <h1 className="title">Welcome to Next!</h1>
-      <p className="description">
-        To get started, edit <code>pages/index.js</code> and save to reload.
-      </p>
+    <div className={classes.logoImage}>    <LogoImage /></div>
+    <div className={classes.logoName}><LogoName /></div>
 
-      <div className="row">
-        <Link href="https://github.com/zeit/next.js#getting-started">
-          <a className="card">
-            <h3>Getting Started &rarr;</h3>
-            <p>Learn more about Next on Github and in their examples</p>
-          </a>
-        </Link>
-        <Link href="https://open.segment.com/create-next-app">
-          <a className="card">
-            <h3>Examples &rarr;</h3>
-            <p>
-              Find other example boilerplates on the{' '}
-              <code>create-next-app</code> site
-            </p>
-          </a>
-        </Link>
-        <Link href="https://github.com/segmentio/create-next-app">
-          <a className="card">
-            <h3>Create Next App &rarr;</h3>
-            <p>Was this tool helpful? Let us know how we can improve it</p>
-          </a>
-        </Link>
-        <TextButton name="Get stated" />
-      </div>
+      <div className="title">Accept CryptoCurrency Payments on your Store</div>
+    
+      <div className={classes.button}>  <TextButton name="Get stated" /></div>
+    
+   
     </div>
 
     <style jsx>{`
@@ -51,7 +53,7 @@ const Home = () => (
         width: 100%;
         padding-top: 80px;
         line-height: 1.15;
-        font-size: 48px;
+        font-size: 28px;
       }
       .title,
       .description {
@@ -89,5 +91,6 @@ const Home = () => (
     `}</style>
   </div>
 )
+    }
 
-export default Home
+export default withStyles(styles)(Home)
