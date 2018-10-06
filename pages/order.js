@@ -7,7 +7,7 @@ import web3 from '../web3';
 import { KOVAN_CONFIGS } from '../web3/util/configs';
 import { EXCHANGE, ZRXTOKEN, DAI } from '../web3/util/addresses';
 import { NULL_ADDRESS, ZERO } from '../web3/util/constants';
-import { createOrder, getRandomFutureDateInSeconds, get } from '../web3/util/orderUtil';
+import { createOrder, getRandomFutureDateInSeconds, getExpirationTime } from '../web3/util/orderUtil';
 import { startLoading, stopLoading } from '../store/actions/ui';
 import { loadBalance } from '../store/actions/token';
 import { fetchOrder } from '../store/actions/order';
