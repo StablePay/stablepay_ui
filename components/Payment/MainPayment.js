@@ -10,7 +10,6 @@ import TextButton from '../common/TextButton';
 import { connect } from 'react-redux'
 import LoadingIndicator from '../common/LoadingIndicator';
 import { ERC20_MAP } from '../../web3/util/addresses';
-import SnackbarsMessages from './Spinner/SnackbarsMessages';
 import web3 from '../../web3';
 import { loadBalance } from '../../store/actions/token';
 
