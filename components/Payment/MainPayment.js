@@ -11,6 +11,8 @@ import { connect } from 'react-redux'
 import LoadingIndicator from '../common/LoadingIndicator';
 import { ERC20_MAP } from '../../web3/util/addresses';
 import web3 from '../../web3';
+import { getContractInstance } from '../../web3/contracts/utils';
+import { STABLEPAY } from '../../web3/util/addresses'
 import { loadBalance } from '../../store/actions/token';
 import CircularIndetermiante from '../common/CircularIndetermiante';
 import SelectWallet from '../common/SelectWallet';
@@ -29,6 +31,8 @@ const styles = theme => ({
   }, 
 
 });
+
+// to use const stablePay = getContractInstance('StablePay', STABLEPAY);
 
 class MainPayment extends Component {
   state = {
@@ -66,7 +70,7 @@ class MainPayment extends Component {
     });
   }
 
-  onChangeWallet(value) {
+  _onChangeWallet(value) {
     console.log('Wallet ', value);
   }
 
@@ -83,7 +87,7 @@ class MainPayment extends Component {
             WalletBrowserData={this.props.WalletBrowserData}
             name='Wallet App Require'
             helperText='Please Select a Wallet'
-            onChange={this.onChangeWallet}
+            onChange={this._onChangeWallet}
           />
          <SelectToken
           data={this.props.TokenData}
@@ -94,7 +98,9 @@ class MainPayment extends Component {
           tokenName={this.state.tokenName}
         />
         <DetailPayment exchangeAmount={0.5} tokenName="Eth" />
-        <div className={classes.button}>  <TextButton name="confirm"/></div>
+        <div className={classes.button}>  
+          <TextButton name="Confirm Payment" />
+        </div>
 
         <LoadingIndicator show={showModal} description={loadingMessage} onClose={null}/>
         <CircularIndetermiante show={loading}/>
