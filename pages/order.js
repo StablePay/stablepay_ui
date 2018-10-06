@@ -7,10 +7,10 @@ import web3 from '../web3';
 import { KOVAN_CONFIGS } from '../web3/util/configs';
 import { EXCHANGE, ZRXTOKEN, DAI } from '../web3/util/addresses';
 import { NULL_ADDRESS, ZERO } from '../web3/util/constants';
-import { createOrder, getRandomFutureDateInSeconds } from '../web3/util/orderUtil';
+import { createOrder, getRandomFutureDateInSeconds, getExpirationTime } from '../web3/util/orderUtil';
 import { startLoading, stopLoading } from '../store/actions/ui';
 import { loadBalance } from '../store/actions/token';
-
+import { fetchOrder } from '../store/actions/order';
 
 class Order extends Component {
     state = {
@@ -25,6 +25,7 @@ class Order extends Component {
         console.log('account from', accounts[0]);
         this.props.startLoading();
         this._loadBalance(DAI, maker);
+        await fetchOrder('ETH');
         this.props.stopLoading();
     }
 
