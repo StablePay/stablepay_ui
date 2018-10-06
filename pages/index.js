@@ -8,19 +8,24 @@ import LogoImage from '../components/Home/LogoImage'
 import LogoName from '../components/Home/LogoName'
 
 const styles = theme => ({
-  button: {
+  root: {
     display: 'flex',
     justifyContent: 'center',
+    textAlign: 'center'
+  }, 
+  button: {
+    // display: 'flex',
+    // justifyContent: 'center',
     marginTop: '30px', 
   }, 
   logoImage: {
-    display: 'flex',
-    justifyContent: 'center',
+    // display: 'flex',
+    // justifyContent: 'center',
     marginTop: '100px'
   }, 
   logoName: {
-    display: 'flex',
-    justifyContent: 'center',
+    // display: 'flex',
+    // justifyContent: 'center',
     marginTop: '50px'
   }, 
 
@@ -29,7 +34,7 @@ const styles = theme => ({
 function Home (props) {
   const { classes } = props;
 return(
-  <div>
+  <div className={classes.root}>
     <Head title="Home" />
  
 
