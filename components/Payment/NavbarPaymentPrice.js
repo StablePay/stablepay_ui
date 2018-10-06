@@ -34,7 +34,7 @@ class NavbarPaymentPrice extends React.Component {
               <Grid  item>
               <i className="material-icons">
               add_shopping_cart
-</i> $ 299.99
+</i> $ 5.00
               </Grid>
           </Grid>
           <hr style={{backgroundColor: "#E0E0E0", height: "1px", border: 0}} />
