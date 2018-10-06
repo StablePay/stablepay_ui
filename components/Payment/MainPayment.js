@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import { startLoading, stopLoading } from '../../store/actions/ui';
 import Navbar from './Navbar';
 import NavbarPaymentPrice from './NavbarPaymentPrice';
-import SelectCommon from '../common/SelectCommon';
 import SelectToken from '../common/SelectToken';
 import DetailPayment from './DetailPayment';
 import TextButton from '../common/TextButton';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import LoadingIndicator from '../common/LoadingIndicator';
 import { ERC20_MAP } from '../../web3/util/addresses';
 import web3 from '../../web3';
@@ -17,6 +18,9 @@ import { loadBalance } from '../../store/actions/token';
 import CircularIndetermiante from '../common/CircularIndetermiante';
 import SelectWallet from '../common/SelectWallet';
 
+const BASE_API_URL = 'https://www.mocky.io/v2/';
+const ETH_ORDER_API = '5bb936213100006c003ed924';
+const ZRX_ORDER_API = '5bb9359f31000065003ed923';
 
 const styles = theme => ({
   root: {
@@ -39,7 +43,8 @@ class MainPayment extends Component {
     tokenName: null,
     tokenAddress: null,
     tokenBalance: null,
-    currentAccount: null
+    currentAccount: null,
+    signedOrder: null
   }
 
   async componentDidMount() {
@@ -47,27 +52,43 @@ class MainPayment extends Component {
     this.setState({currentAccount: accounts[0]});
   }
 
+  async fetchOrder (apiOrderId) {
+    const orderUrl = `${BASE_API_URL}${apiOrderId}`;
+    console.log(orderUrl);
+    const res = await axios.get(orderUrl);
+    console.log(res);
+    return res.data;
+}
+
   async onChangeToken(value) {
+    startLoading();
     console.log('Token ', value);
     let balance = 0;
     let erc20Address = null;
+    let signedOrder = null;
     if(value === 'ETH') {
       // Option ETH selected. 
        balance = await loadBalance(null, this.state.currentAccount);
+       signedOrder = await this.fetchOrder(ETH_ORDER_API);
     } else {
       // Option ERC20 selected.
       erc20Address = ERC20_MAP[value];
       balance = await loadBalance(erc20Address, this.state.currentAccount);
+      signedOrder = await this.fetchOrder(ZRX_ORDER_API);
     }
     console.log(`Token Name:      ${value}.`);
     console.log(`Token Address:   ${erc20Address}.`);
     console.log(`Token Balance:   ${balance}.`);
+    console.log(`SignedOrder:`);
+    console.log(signedOrder);
 
     this.setState({
       tokenName: value,
       tokenAddress: erc20Address,
-      tokenBalance: balance 
+      tokenBalance: balance,
+      signedOrder: signedOrder 
     });
+    stopLoading();
   }
 
   _onChangeWallet(value) {
