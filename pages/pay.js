@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
 import MainPayment from '../components/Payment/MainPayment';
+import { connect } from 'react-redux'
 
 const styles = theme => ({
   root: {
@@ -18,7 +17,7 @@ function Pay(props) {
 
   return (
     <div>
-    <MainPayment />
+    <MainPayment WalletData={props.WalletData} TokenData={props.TokenData} />
     </div>
   );
 }
@@ -27,4 +26,8 @@ Pay.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Pay);
+const mapStateToProps = state => ({
+  WalletData: state.WalletData,
+  TokenData: state.TokenData
+  })
+export default connect(mapStateToProps)(withStyles(styles)(Pay));
