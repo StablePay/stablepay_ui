@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Navbar from './Navbar';
+import NavbarPaymentPrice from './NavbarPaymentPrice';
 
 const styles = theme => ({
   root: {
@@ -19,6 +20,7 @@ function MainPayment(props) {
   return (
     <div>
         <Navbar />
+        <NavbarPaymentPrice />
       <Paper className={classes.root} elevation={1}>
         <Typography variant="headline" component="h3">
           This is a sheet of paper.
