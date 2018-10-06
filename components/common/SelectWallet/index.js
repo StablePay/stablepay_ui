@@ -25,7 +25,7 @@ const styles = theme => ({
 });
 
 function SelectWallet(props) {
-  const { classes, WalletData, WalletBrowserData, name, helperText } = props;
+  const { classes, WalletData, WalletBrowserData, name, helperText, onChange } = props;
 
 
 
@@ -37,7 +37,7 @@ function SelectWallet(props) {
      
                 name={name}
                 helperText={helperText}
-                onChange= {value => this.onChangeWallet(value)}
+                onChange= {onChange}
                 />
         </BrowserView>
         <MobileView>
@@ -45,7 +45,7 @@ function SelectWallet(props) {
                 data={WalletData}
                 name={name}
                 helperText={helperText}
-                onChange= {value => this.onChangeWallet(value)}
+                onChange= {onChange}
                 />
         </MobileView>
     </div>

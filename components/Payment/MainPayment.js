@@ -83,6 +83,7 @@ class MainPayment extends Component {
             WalletBrowserData={this.props.WalletBrowserData}
             name='Wallet App Require'
             helperText='Please Select a Wallet'
+            onChange={this.onChangeWallet}
           />
          <SelectToken
           data={this.props.TokenData}
