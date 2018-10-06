@@ -17,6 +17,7 @@
     "ethers": "4.0.1",
     "next": "^7.0.1",
     "react": "^16.5.2",
+    "react-device-detect": "^1.6.1",
     "react-dom": "^16.5.2",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",

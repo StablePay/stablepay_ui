@@ -4,12 +4,15 @@ import tokenInfoReducer from './reducers/tokenInfoReducer';
 import uiReducer from './reducers/uiReducer';
 import WalletData from './reducers/walletReducer'
 import TokenData from './reducers/tokenReducer'
+import WalletBrowserData from './reducers/walletBrowserReducer'
+
 
 
 const rootReducer = combineReducers({
     tokenInfo: tokenInfoReducer,
     WalletData: WalletData,
     TokenData: TokenData,
+    WalletBrowserData: WalletBrowserData,
     ui: uiReducer
 })
 
