@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
     ContractWrappers,
 } from '0x.js';
@@ -7,12 +8,19 @@ import { KOVAN_CONFIGS } from '../web3/util/configs';
 import { EXCHANGE, ZRXTOKEN, DAI } from '../web3/util/addresses';
 import { NULL_ADDRESS, ZERO } from '../web3/util/constants';
 import { createOrder, getRandomFutureDateInSeconds } from '../web3/util/orderUtil';
+import { loadBalance } from '../store/actions/token';
+
 
 
 class Order extends Component {
-    state = {
-        
+    async componentDidMount() {
+        const accounts = await web3.eth.getAccounts();
+        const maker = accounts[0];
+        console.log('account from', accounts[0]);
+        this.props.loadBalance('DAI', DAI, maker);
     }
+
+
 
     _onApprove = async () => {
         const accounts = await web3.eth.getAccounts();
@@ -59,6 +67,8 @@ class Order extends Component {
     }
 
     render () {
+        console.log('token info', this.props.token);
+        
         return (
             <div>
                 <div>
@@ -79,5 +89,9 @@ class Order extends Component {
     }
 }
 
-export default Order;
+const mapStateToProps = ({ token }) => ({
+    token
+});
+
+export default connect(mapStateToProps, { loadBalance })(Order);
 
