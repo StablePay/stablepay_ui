@@ -95,6 +95,10 @@ class MainPayment extends Component {
     console.log('Wallet ', value);
   }
 
+  _handleClick = () => {
+    console.log('click button');
+  }
+
   render () {
     const { classes, loading, loadingMessage, showModal,onClose } = this.props;
 
@@ -120,7 +124,7 @@ class MainPayment extends Component {
         />
         <DetailPayment exchangeAmount={0.5} tokenName="Eth" />
         <div className={classes.button}>  
-          <TextButton name="Confirm Payment" onCl/>
+          <TextButton name="Confirm Payment" onClick={this._handleClick}/>
         </div>
 
         <LoadingIndicator show={showModal} description={loadingMessage} onClose={null}/>
