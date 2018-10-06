@@ -22,6 +22,12 @@ const styles = theme => ({
 });
 
 class MainPayment extends Component {
+  state = {
+    tokenAddress: null,
+    tokenBalance: null
+  }
+
+
   render () {
     const { classes } = this.props;
 
