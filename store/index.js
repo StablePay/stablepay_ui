@@ -1,12 +1,12 @@
 import { combineReducers, applyMiddleware, createStore } from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import tokenReducer from './reducers/tokenReducer';
+import tokenInfoReducer from './reducers/tokenInfoReducer';
 import WalletData from './reducers/walletReducer'
 import TokenData from './reducers/tokenReducer'
 
 
 const rootReducer = combineReducers({
-    token: tokenReducer,
+    tokenInfo: tokenInfoReducer,
     WalletData: WalletData,
     TokenData: TokenData
 })

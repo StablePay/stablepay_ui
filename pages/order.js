@@ -11,13 +11,28 @@ import { createOrder, getRandomFutureDateInSeconds } from '../web3/util/orderUti
 import { loadBalance } from '../store/actions/token';
 
 
-
 class Order extends Component {
+    state = {
+        account: null,
+        tokenBalance: null,
+        tokenAddress: null
+    }
+
     async componentDidMount() {
         const accounts = await web3.eth.getAccounts();
         const maker = accounts[0];
         console.log('account from', accounts[0]);
-        this.props.loadBalance('DAI', DAI, maker);
+        this._loadBalance(DAI, maker);
+    }
+
+    _loadBalance = async (tokenAddress, account) => {
+        const balance = await loadBalance(tokenAddress, account);
+        this.setState(
+            { 
+                tokenBalance: balance,
+                tokenAddress 
+            }
+        );
     }
 
 
@@ -67,7 +82,7 @@ class Order extends Component {
     }
 
     render () {
-        console.log('token info', this.props.token);
+        console.log('token info', this.state);
         
         return (
             <div>
@@ -89,9 +104,5 @@ class Order extends Component {
     }
 }
 
-const mapStateToProps = ({ token }) => ({
-    token
-});
-
-export default connect(mapStateToProps, { loadBalance })(Order);
+export default Order;
 
