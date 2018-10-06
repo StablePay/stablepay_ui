@@ -11,7 +11,7 @@ const styles = theme => ({
   button: {
     display: 'flex',
     justifyContent: 'center',
-    marginTop: '30px'
+    marginTop: '30px', 
   }, 
   logoImage: {
     display: 'flex',
@@ -22,7 +22,8 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'center',
     marginTop: '50px'
-  }
+  }, 
+
 });
 
 function Home (props) {
@@ -38,7 +39,7 @@ return(
 
       <div className="title">Accept CryptoCurrency Payments on your Store</div>
     
-      <div className={classes.button}>  <TextButton name="Get stated" href='pay'/></div>
+      <div className={classes.button}>  <TextButton name="Get started" href='pay'/></div>
     
    
     </div>

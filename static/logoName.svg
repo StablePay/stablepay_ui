@@ -1,10 +1,6 @@
-import React from 'react'
-
-function LogoName (props) {
-  return (
-    <div>
-    <svg width="238px" height="91px" viewBox="0 0 438 91" version="1.1" xmlns="http://www.w3.org/2000/svg" >
-
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="438px" height="91px" viewBox="0 0 438 91" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
     <title>Artboard</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
@@ -14,12 +10,3 @@ function LogoName (props) {
         </text>
     </g>
 </svg>
-
-      <style jsx>{`
-      
-     `}</style>
-    </div>
-  )
-}
-
-export default LogoName

@@ -29,7 +29,7 @@ class NavbarPaymentPrice extends React.Component {
           <Grid container className={classes.demo} justify="center" spacing={40}>
          
              <Grid  item>
-             <img src='/static/logo.svg' alt='Smiley face' width='142' />
+             <img src='/static/logo.svg' alt='Tablepay' width='142' />
               </Grid>
               <Grid  item>
               <i className="material-icons">

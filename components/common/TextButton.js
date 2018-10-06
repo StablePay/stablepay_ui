@@ -52,13 +52,14 @@ const styles = theme => ({
     margin: theme.spacing.unit,
     backgroundColor: '#2593e8',
     color: '#fff', 
+    width: '300px',
     
   },
 });
 function TextButtons (props) {
   const { classes } = props;
   return (
-    <Button fullWidth variant="contained" size="large"  href={props.href} className={classes.button}>
+    <Button variant="contained" size="large"  href={props.href} className={classes.button}>
          {props.name}
         </Button>
   )
