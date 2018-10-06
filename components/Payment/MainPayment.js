@@ -13,6 +13,7 @@ import { ERC20_MAP } from '../../web3/util/addresses';
 import web3 from '../../web3';
 import { loadBalance } from '../../store/actions/token';
 import CircularIndetermiante from '../common/CircularIndetermiante';
+import SelectWallet from '../common/SelectWallet';
 
 
 const styles = theme => ({
@@ -26,6 +27,7 @@ const styles = theme => ({
     justifyContent: 'center',
     marginTop: '30px', 
   }, 
+
 });
 
 class MainPayment extends Component {
@@ -76,12 +78,12 @@ class MainPayment extends Component {
           <Navbar />
           <NavbarPaymentPrice      
           />
-          <SelectCommon 
-           data={this.props.WalletData}
+         <SelectWallet 
+            WalletData={this.props.WalletData} 
+            WalletBrowserData={this.props.WalletBrowserData}
             name='Wallet App Require'
             helperText='Please Select a Wallet'
-            onChange= {value => this.onChangeWallet(value)}
-            />
+          />
          <SelectToken
           data={this.props.TokenData}
           name='Token'
@@ -107,6 +109,7 @@ MainPayment.propTypes = {
 const mapStateToProps = state => ({
   WalletData: state.WalletData,
   TokenData: state.TokenData,
+  WalletBrowserData: state.WalletBrowserData,
   loading: state.ui.loading,
   loadingMessage: state.ui.loadingMessage,
   showModal: state.ui.showModal
