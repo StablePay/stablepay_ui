@@ -65,8 +65,8 @@ class SelectCommon extends React.Component {
           margin="normal"
         >
           {data.map(option => (
-            <MenuItem key={option.value} value={option.value}>
-    <img src={`../../static/${option.src}`} alt={option.label} height="22" width="22"></img> &nbsp; &nbsp;{option.label} 
+            <MenuItem key={option.value} value={option.value} >
+    <img src={`../../static/${option.src}`} alt={option.label} height="22" width="22"></img> &nbsp; &nbsp;{option.label} <span style={{float: "right"}}>{option.token}</span> 
             </MenuItem>
           ))}
         </TextField>

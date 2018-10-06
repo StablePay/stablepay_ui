@@ -8,12 +8,14 @@ export default function () {
       {
         value: 'Toshi Wallet',
         label: 'Toshi Wallet',
-        src: 'toshi.svg'
+        src: 'toshi.svg', 
+      
       },
       {
         value: 'Trust wallet',
         label: 'Trust wallet',
-        src: 'trust.svg'
+        src: 'trust.svg',
+   
       }
     ]
   }
