@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
 import Navbar from './Navbar';
 import NavbarPaymentPrice from './NavbarPaymentPrice';
 import SelectCommon from '../common/SelectCommon';
+import DetailPayment from './DetailPayment';
+import TextButton from '../common/TextButton';
 
 const styles = theme => ({
   root: {
@@ -33,6 +33,8 @@ function MainPayment(props) {
         name='Token'
         helperText='Please Select token'
       />
+      <DetailPayment />
+      <TextButton name="confirm"/>
     </div>
   );
 }

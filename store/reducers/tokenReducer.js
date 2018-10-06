@@ -8,18 +8,20 @@ export default function () {
       {
         value: 'ETH',
         label: 'ETH',
-        src: 'ethereum-brands.svg'
+        src: 'ethereum-brands.svg',
+        token: '1.09'
       },
       {
         value: 'ZRX',
         label: 'ZRX',
-        src: 'zrx.png'
+        src: 'zrx.png',
+        token: '1.09'
       }, 
-      {
-        value: 'MKR',
-        label: 'MKR',
-        src: 'maker.png'
-      }
+    //   {
+    //     value: 'MKR',
+    //     label: 'MKR',
+    //     src: 'maker.png'
+    //   }
     ]
   }
 
