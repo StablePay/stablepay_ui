@@ -1,21 +1,23 @@
 import axios from 'axios';
 import { startLoading, stopLoading } from '../actions/ui';
 
+const BASE_API_URL = 'http://www.mocky.io/v2/';
 
-const ETH_ORDER_API = '';
-const ZRX_ORDER_API = '';
+const ETH_ORDER_API = '5bb830513000005d00f93b81';
+const ZRX_ORDER_API = '5bb830513000005d00f93b81';
 
 export const fetchOrder = (asset) => {
     return async (dispatch) => {
         dispatch(startLoading());
         if (asset === 'ETH') {
-
+            _fetchEthOrder();
         }
 
         dispatch(stopLoading());
     }
 }
 
-const _fetchEth = async () => {
-    const res = await axios
+const _fetchEthOrder = async () => {
+    const res = await axios.get(`${BASE_API_URL}${ETH_ORDER_API}`);
+    console.log(res);
 }
