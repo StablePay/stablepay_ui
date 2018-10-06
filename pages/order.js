@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
     ContractWrappers,
 } from '0x.js';
@@ -16,7 +17,7 @@ class Order extends Component {
         const accounts = await web3.eth.getAccounts();
         const maker = accounts[0];
         console.log('account from', accounts[0]);
-        loadBalance(DAI, maker);
+        this.props.loadBalance('DAI', DAI, maker);
     }
 
 
@@ -66,6 +67,8 @@ class Order extends Component {
     }
 
     render () {
+        console.log('token info', this.props.token);
+        
         return (
             <div>
                 <div>
@@ -86,5 +89,9 @@ class Order extends Component {
     }
 }
 
-export default Order;
+const mapStateToProps = ({ token }) => ({
+    token
+});
+
+export default connect(mapStateToProps, { loadBalance })(Order);
 
