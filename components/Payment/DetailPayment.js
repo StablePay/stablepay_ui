@@ -23,17 +23,17 @@ const styles = theme => ({
 });
 
 function DetailPayment(props) {
-  const { classes } = props;
+  const { classes, tokenName, exchangeAmount } = props;
 
   return (
     <div>
       <div className={classes.root} elevation={1}>
         <Typography component="p">
-You will Exchange <span style={{float: "right"}}>1.004 BNB</span>
+You will Exchange <span style={{float: "right"}}>{exchangeAmount} {tokenName}</span>
         </Typography>
         < hr />
         <Typography component="p">
-          You will use <span style={{fontWeight: "bold"}}>1.063 BNB</span> from your balance to pay. see <span style={{color: "#2593e8", fontWeight: "bold"}}> more details</span>
+          You will use <span style={{fontWeight: "bold"}}>{exchangeAmount} {tokenName}</span> from your balance to pay. see <span style={{color: "#2593e8", fontWeight: "bold"}}> more details</span>
         </Typography>
       
       </div>
