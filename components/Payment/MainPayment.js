@@ -7,6 +7,8 @@ import SelectCommon from '../common/SelectCommon';
 import DetailPayment from './DetailPayment';
 import TextButton from '../common/TextButton';
 import { connect } from 'react-redux'
+import Spinner from './Spinner/Spinner';
+import SnackbarsMessages from './Spinner/SnackbarsMessages';
 
 const styles = theme => ({
   root: {
@@ -40,15 +42,18 @@ class MainPayment extends Component {
            data={this.props.WalletData}
             name='Wallet App Require'
             helperText='Please Select a Wallet'
+            onChange= {value => console.log('valor seleccionado', value )}
             />
          <SelectCommon
           data={this.props.TokenData}
           name='Token'
           helperText='Please Select token'
+          onChange= {value => console.log('valor seleccionado', value )}
         />
         <DetailPayment />
         <div className={classes.button}>  <TextButton name="confirm"/></div>
-      
+
+      <SnackbarsMessages  />
       </div>
     );
   }
