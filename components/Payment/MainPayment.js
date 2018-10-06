@@ -4,10 +4,14 @@ import { withStyles } from '@material-ui/core/styles';
 import Navbar from './Navbar';
 import NavbarPaymentPrice from './NavbarPaymentPrice';
 import SelectCommon from '../common/SelectCommon';
+import SelectToken from '../common/SelectToken';
 import DetailPayment from './DetailPayment';
 import TextButton from '../common/TextButton';
 import { connect } from 'react-redux'
 import LoadingIndicator from '../common/LoadingIndicator';
+import { ERC20_MAP } from '../../web3/util/addresses';
+import web3 from '../../web3';
+import { loadBalance } from '../../store/actions/token';
 
 
 const styles = theme => ({
@@ -25,10 +29,43 @@ const styles = theme => ({
 
 class MainPayment extends Component {
   state = {
+    tokenName: null,
     tokenAddress: null,
-    tokenBalance: null
+    tokenBalance: null,
+    currentAccount: null
   }
 
+  async componentDidMount() {
+    const accounts = await web3.eth.getAccounts();
+    this.setState({currentAccount: accounts[0]});
+  }
+
+  async onChangeToken(value) {
+    console.log('Token ', value);
+    let balance = 0;
+    let erc20Address = null;
+    if(value === 'ETH') {
+      // Option ETH selected. 
+       balance = await loadBalance(null, this.state.currentAccount);
+    } else {
+      // Option ERC20 selected.
+      erc20Address = ERC20_MAP[value];
+      balance = await loadBalance(erc20Address, this.state.currentAccount);
+    }
+    console.log(`Token Name:      ${value}.`);
+    console.log(`Token Address:   ${erc20Address}.`);
+    console.log(`Token Balance:   ${balance}.`);
+
+    this.setState({
+      tokenName: value,
+      tokenAddress: erc20Address,
+      tokenBalance: balance 
+    });
+  }
+
+  onChangeWallet(value) {
+    console.log('Wallet ', value);
+  }
 
   render () {
     const { classes, loading, loadingMessage, showModal,onClose } = this.props;
@@ -42,13 +79,15 @@ class MainPayment extends Component {
            data={this.props.WalletData}
             name='Wallet App Require'
             helperText='Please Select a Wallet'
-            onChange= {value => console.log('valor seleccionado', value )}
+            onChange= {value => this.onChangeWallet(value)}
             />
-         <SelectCommon
+         <SelectToken
           data={this.props.TokenData}
           name='Token'
           helperText='Please Select token'
-          onChange= {value => console.log('valor seleccionado', value )}
+          onChange= {value => this.onChangeToken(value)}
+          balance={this.state.tokenBalance}
+          tokenName={this.state.tokenName}
         />
         <DetailPayment />
         <div className={classes.button}>  <TextButton name="confirm"/></div>

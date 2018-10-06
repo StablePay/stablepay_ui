@@ -1,5 +1,5 @@
 import {
-    ContractWrappers
+    ContractWrappers, BigNumber
 } from '0x.js';
 import { Web3Wrapper } from '@0xproject/web3-wrapper';
 import web3 from '../../web3';
@@ -9,12 +9,19 @@ import { DECIMALS } from '../../web3/util/constants';
 
 
 export const loadBalance = async (tokenAddress, address) => {
-    const contractWrappers = new ContractWrappers(web3.currentProvider, { networkId: KOVAN_CONFIGS.networkId });
-    const balanceBaseUnits = await contractWrappers.erc20Token.getBalanceAsync(tokenAddress, address);
+    if(tokenAddress === null) {
+        const balance = await web3.eth.getBalance(address);
+        const balanceEth = web3.utils.fromWei(balance);
 
-    const balance = Web3Wrapper.toUnitAmount(balanceBaseUnits, DECIMALS);
+        const rounded = new BigNumber(balanceEth.toString()).toDigits(5);
 
-    console.log('balance', balance.toNumber());
-
-    return balance.toNumber();
+        return rounded.toNumber();
+    } else {
+        const contractWrappers = new ContractWrappers(web3.currentProvider, { networkId: KOVAN_CONFIGS.networkId });
+        const balanceBaseUnits = await contractWrappers.erc20Token.getBalanceAsync(tokenAddress, address);
+    
+        const balance = Web3Wrapper.toUnitAmount(balanceBaseUnits, DECIMALS);
+        
+        return balance.toNumber();
+    }
 }
