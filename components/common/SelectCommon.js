@@ -32,14 +32,15 @@ const styles = theme => ({
 
 class SelectCommon extends React.Component {
   state = {
- 
-    currency: this.props.data[0].value,
+    value: this.props.data[0].value,
   };
 
   handleChange = name => event => {
+   
     this.setState({
       [name]: event.target.value,
     });
+    this.props.onChange(event.target.value)
   };
 
 
@@ -53,8 +54,8 @@ class SelectCommon extends React.Component {
           select
           label={this.props.name}
           className={classes.textField}
-          value={this.state.currency}
-          onChange={this.handleChange('currency')}
+          value={this.state.value}
+          onChange={this.handleChange('value')}
           fullWidth
           SelectProps={{
             MenuProps: {
@@ -65,7 +66,7 @@ class SelectCommon extends React.Component {
           margin="normal"
         >
           {data.map(option => (
-            <MenuItem key={option.value} value={option.value} >
+            <MenuItem key={option.value} value={option.value} onChange={this.handleChange} >
     <img src={`../../static/${option.src}`} alt={option.label} height="22" width="22"></img> &nbsp; &nbsp;{option.label} <span style={{float: "right"}}>{option.token}</span> 
             </MenuItem>
           ))}
