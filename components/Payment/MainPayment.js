@@ -94,7 +94,7 @@ class MainPayment extends Component {
           tokenName={this.state.tokenName}
         />
         <DetailPayment />
-        <div className={classes.button}>  <TextButton name="confirm"/></div>
+        <div className={classes.button}>  <TextButton disabled={true}name="confirm"/></div>
 
         <LoadingIndicator show={showModal} description={loadingMessage} onClose={null}/>
         <CircularIndetermiante />
