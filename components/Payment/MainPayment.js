@@ -93,7 +93,7 @@ class MainPayment extends Component {
           balance={this.state.tokenBalance}
           tokenName={this.state.tokenName}
         />
-        <DetailPayment />
+        <DetailPayment exchangeAmount={0.5} tokenName="Eth" />
         <div className={classes.button}>  <TextButton name="confirm"/></div>
 
         <LoadingIndicator show={showModal} description={loadingMessage} onClose={null}/>
