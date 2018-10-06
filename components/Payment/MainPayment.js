@@ -7,8 +7,8 @@ import SelectCommon from '../common/SelectCommon';
 import DetailPayment from './DetailPayment';
 import TextButton from '../common/TextButton';
 import { connect } from 'react-redux'
-import Spinner from './Spinner/Spinner';
-import SnackbarsMessages from './Spinner/SnackbarsMessages';
+import LoadingIndicator from '../common/LoadingIndicator';
+
 
 const styles = theme => ({
   root: {
@@ -31,7 +31,7 @@ class MainPayment extends Component {
 
 
   render () {
-    const { classes } = this.props;
+    const { classes, loading, loadingMessage, showModal,onClose } = this.props;
 
     return (
       <div>
@@ -53,7 +53,7 @@ class MainPayment extends Component {
         <DetailPayment />
         <div className={classes.button}>  <TextButton name="confirm"/></div>
 
-      <SnackbarsMessages  />
+        <LoadingIndicator show={showModal} description={loadingMessage} onClose={null}/>
       </div>
     );
   }
@@ -65,6 +65,9 @@ MainPayment.propTypes = {
 };
 const mapStateToProps = state => ({
   WalletData: state.WalletData,
-  TokenData: state.TokenData
-  })
+  TokenData: state.TokenData,
+  loading: state.ui.loading,
+  loadingMessage: state.ui.loadingMessage,
+  showModal: state.ui.showModal
+})
 export default connect(mapStateToProps)(withStyles(styles)(MainPayment));
