@@ -10,8 +10,8 @@ const styles = theme => ({
     backgroundColor: '#2593e8',
     color: '#fff', 
     width: '300px',
-    display: 'flex',
-    justifyContent: 'center'
+    // display: 'flex',
+    // justifyContent: 'center'
     
   },
 });
