@@ -4,6 +4,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import flush from 'styled-jsx/server'
+import head from '../components/head'
 // import Header from '../components/header'
 
 
@@ -23,6 +24,7 @@ class MyDocument extends Document {
       <html>
    
         <Head>
+    
           {/* <Header /> */}
           <title>Test Page</title>
           {this.props.styleTags}
@@ -30,7 +32,7 @@ class MyDocument extends Document {
             name='theme-color'
             content={pageContext.theme.palette.primary.main}
           />
-          {/* <meta name='viewport' content='width=device-width, initial-scale=1' /> */}
+          <meta name='viewport' content='width=device-width, initial-scale=1' />
 
           <link
             rel='stylesheet'

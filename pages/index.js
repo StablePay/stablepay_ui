@@ -38,7 +38,7 @@ return(
 
       <div className="title">Accept CryptoCurrency Payments on your Store</div>
     
-      <div className={classes.button}>  <TextButton name="Get stated" /></div>
+      <div className={classes.button}>  <TextButton name="Get stated" href='pay'/></div>
     
    
     </div>
