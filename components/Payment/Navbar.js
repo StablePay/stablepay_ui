@@ -32,7 +32,7 @@ function Navbar (props) {
        
 
           <div>
-            {' '}<img src='/static/logo.svg' alt='Smiley face' width='142' />
+            {' '}<img src='/static/Logo.svg' alt='Smiley face' width='142' />
           </div>
 
         </Toolbar>

@@ -5,6 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Navbar from './Navbar';
 import NavbarPaymentPrice from './NavbarPaymentPrice';
+import SelectCommon from '../common/SelectCommon';
 
 const styles = theme => ({
   root: {
@@ -20,15 +21,18 @@ function MainPayment(props) {
   return (
     <div>
         <Navbar />
-        <NavbarPaymentPrice />
-      <Paper className={classes.root} elevation={1}>
-        <Typography variant="headline" component="h3">
-          This is a sheet of paper.
-        </Typography>
-        <Typography component="p">
-          Paper can be used to build surface or other elements for your application.
-        </Typography>
-      </Paper>
+        <NavbarPaymentPrice      
+        />
+        <SelectCommon 
+         data={props.WalletData}
+          name='Wallet App Require'
+          helperText='Please Select a Wallet'
+          />
+       <SelectCommon
+        data={props.TokenData}
+        name='Token'
+        helperText='Please Select token'
+      />
     </div>
   );
 }
