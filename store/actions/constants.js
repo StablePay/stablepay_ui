@@ -1,0 +1,1 @@
+export const LOAD_TOKEN_BALANCE = 'LOAD_TOKEN_BALANCE';

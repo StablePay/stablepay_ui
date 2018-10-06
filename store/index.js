@@ -4,7 +4,7 @@ import TokenData from './reducers/tokenReducer'
 
 const rootReducer = combineReducers({
     WalletData: WalletData,
-    TokenData: TokenData
+    TokenData: TokenData,
 })
 
 export default rootReducer;
