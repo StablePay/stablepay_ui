@@ -8,6 +8,7 @@ import { KOVAN_CONFIGS } from '../web3/util/configs';
 import { EXCHANGE, ZRXTOKEN, DAI } from '../web3/util/addresses';
 import { NULL_ADDRESS, ZERO } from '../web3/util/constants';
 import { createOrder, getRandomFutureDateInSeconds } from '../web3/util/orderUtil';
+import { startLoading, stopLoading } from '../store/actions/ui';
 import { loadBalance } from '../store/actions/token';
 
 
@@ -22,7 +23,9 @@ class Order extends Component {
         const accounts = await web3.eth.getAccounts();
         const maker = accounts[0];
         console.log('account from', accounts[0]);
+        this.props.startLoading();
         this._loadBalance(DAI, maker);
+        this.props.stopLoading();
     }
 
     _loadBalance = async (tokenAddress, account) => {
@@ -77,14 +80,18 @@ class Order extends Component {
         const signedOrder = await createOrder(order, web3.currentProvider);
 
         console.log('signed Order', JSON.stringify(signedOrder));
-
-
     }
 
     render () {
         console.log('token info', this.state);
+        console.log('props', this.props);
         
         return (
+            <div>
+                  <div>
+                <div>DAI BALANCE</div>
+                <div>{ this.state.tokenBalance}</div>
+            </div>
             <div>
                 <div>
                     sign order
@@ -100,9 +107,18 @@ class Order extends Component {
                 </div>
                  
             </div>
-        )
+
+        </div>
+          
+        );
     }
 }
 
-export default Order;
+const mapStateToProps = ({ ui }) => {
+    return {
+        showSpinner: ui.showSpinner
+    }
+}
+
+export default connect(mapStateToProps, { startLoading, stopLoading } )(Order);
 
