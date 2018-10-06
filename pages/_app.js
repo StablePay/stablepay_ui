@@ -5,7 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import JssProvider from 'react-jss/lib/JssProvider'
 import getPageContext from '../src/getPageContext'
 import { createStore } from 'redux'
-import rootReducer from '../reducers/index'
+import rootReducer from '../store'
 import { Provider } from 'react-redux'
 
 const store = createStore(rootReducer)
