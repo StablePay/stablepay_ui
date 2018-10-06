@@ -29,7 +29,8 @@ export default (state = INITIAL_STATE, action) => {
         case CLOSE_MODAL:
             return {
                 ...state,
-                showModal: false
+                showModal: false,
+                loadingMessage: ''
             }  
         default:
             return state;
