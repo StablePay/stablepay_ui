@@ -47,7 +47,7 @@ return(
     
       <div className={classes.button}>  <TextButton name="Get started" href='pay'/></div>
       <h3>Powered by:</h3>
-   
+      <h3>Supports:</h3>
     </div>
 
     <style jsx>{`
