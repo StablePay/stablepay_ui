@@ -130,9 +130,26 @@ class MainPayment extends Component {
     console.log(this.state.currentAccount);
     console.log(this.state.signedOrder);
     */
-   console.log('111');
     if(this.state.tokenName === 'ETH') {
       // Using ETH
+
+      const stablePay = getContractInstance('stablePay', STABLEPAY);
+      console.log('444');
+
+      console.log('this.state.signedOrder ', this.state.signedOrder);
+      console.log('this.state.receiverAccount ', this.state.receiverAccount);
+      console.log('stablePay.methods ', stablePay.methods);
+      const tx = await stablePay.methods.payETH(
+        this.state.signedOrder.orderArray,
+        DAI,
+        this.state.receiverAccount,
+        amount.toString(),
+        this.state.signedOrder.signature
+      ).send({
+        from: this.state.currentAccount,
+        value: amount.toNumber(),
+        gas:300000
+      });
 
     } else {
       // Using a ERC20
