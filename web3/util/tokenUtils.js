@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const { 
     BigNumber
 } = require('0x.js');
@@ -20,8 +22,18 @@ const toWei = (amount) => {
     return Web3Wrapper.toWei(new BigNumber(amount));
 }
 
-export default {
-    toBaseUnitAmount,
-    toUnitAmount,
-    toWei
+const getUsdPrice = async (token) => {
+    const res = await axios.get(`https://api.coinmarketcap.com/v1/ticker/${token}/`);
+    const tokenPrice = res.data[0].price_usd;
+    console.log(`${token} USD price: ${tokenPrice}`);
+    return tokenPrice;
+}
+
+export const getTokenAmount = async (daiAmount, token) => {
+    const tokenPrice = await getUsdPrice(token);
+    console.log(`${token} price: ${tokenPrice}`);
+    let tokenAmount = daiAmount / tokenPrice;
+    tokenAmount = new BigNumber(tokenAmount.toPrecision(5)).toNumber();
+    console.log(`Total ${token}: ${tokenAmount}`);
+    return tokenAmount;
 }
