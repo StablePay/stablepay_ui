@@ -6,8 +6,8 @@ export default function () {
         src: 'wallet-solid.svg'
       },
       {
-        value: 'Toshi Wallet',
-        label: 'Toshi Wallet',
+        value: 'Coinbase Wallet',
+        label: 'Coinbase Wallet',
         src: 'toshi.svg', 
       
       },
