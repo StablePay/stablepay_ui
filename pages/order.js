@@ -32,17 +32,16 @@ class Order extends Component {
     }
 
     async componentDidMount() {
-        // const accounts = await web3.eth.getAccounts();
-        
-        // const maker = accounts[0];
-        const { address } = this.props;
+        const accounts = await web3.eth.getAccounts();
+        const maker = accounts[0];
+        const address = this.props.address || maker;
         console.log('account from', address);
         this.props.startLoading();
         this._loadBalance(DAI, address);
         await fetchOrder('ETH');
 
         const contractWrappers = new ContractWrappers(web3.currentProvider, { networkId: KOVAN_CONFIGS.networkId });
-        const allowance = await contractWrappers.erc20Token.getProxyAllowanceAsync(DAI, maker);
+        const allowance = await contractWrappers.erc20Token.getProxyAllowanceAsync(DAI, address);
     
         const allowanceAmount = Web3Wrapper.toUnitAmount(allowance, DECIMALS);
 
