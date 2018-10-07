@@ -55,7 +55,7 @@ class MainPayment extends Component {
     tokenAmount: null,
     currentAccount: null,
     signedOrder: null,
-    receiverAccount: '0xe1f8fea4699ce3e0196923e6fa16f773600e59e0'
+    receiverAccount: '0xe1f8fea4699ce3e0196923e6fa16f773600e59e0',
   }
 
   async componentDidMount() {
@@ -72,7 +72,9 @@ class MainPayment extends Component {
 }
 
   onChangeToken = async (value) => {
-    startLoading();
+    this.props.startLoading();
+    this.props.showModal('Looking for best price...');
+    showModal('Please wait while we get you the best exchange price...');
     console.log('Token ', value);
     let balance = 0;
     let erc20 = null;
@@ -104,7 +106,8 @@ class MainPayment extends Component {
       signedOrder: signedOrder,
       tokenAmount: tokenAmount
     });
-    stopLoading();
+    this.props.stopLoading();
+    this.props.closeModal();
   }
 
   async calculateTokensAmount(token) {
@@ -151,7 +154,7 @@ class MainPayment extends Component {
       console.log('STABLEPAY ', STABLEPAY);
       console.log('this.state.tokenAmount ', this.state.tokenAmount);
       const amount =  Web3Wrapper.toBaseUnitAmount(new BigNumber(this.state.tokenAmount), DECIMALS);
-
+      this.props.showModal('Please approve to allow StablePay to pay with your tokens...');
       await token.methods.approve(
         STABLEPAY,
         amount.toString()
@@ -162,6 +165,7 @@ class MainPayment extends Component {
       console.log('this.state.signedOrder ', this.state.signedOrder);
       console.log('this.state.receiverAccount ', this.state.receiverAccount);
       console.log('stablePay.methods ', stablePay.methods);
+      this.props.showModal('Please wait a moment while we confirm your transaction...');
       const tx = await stablePay.methods.payToken(
         this.state.signedOrder.orderArray,
         this.state.tokenAddress.address,
@@ -170,11 +174,15 @@ class MainPayment extends Component {
         amount.toString(),
         this.state.signedOrder.signature
       ).send({ from: this.state.currentAccount, gas:300000 });
+      console.log(tx);
+
+      this.props.closeModal();
     }
   }; 
 
   render () {
-    const { classes, loading, loadingMessage, showModal,onClose } = this.props;
+    console.log('props', this.props);
+    const { classes, loading, loadingMessage, openModal } = this.props;
 
     return (
       <div>
@@ -201,7 +209,7 @@ class MainPayment extends Component {
           <TextButton name="Confirm Payment" onClick={this.handleClick}/>
         </div>
 
-        <LoadingIndicator show={showModal} description={loadingMessage} onClose={null}/>
+        <LoadingIndicator show={openModal} description={loadingMessage} onClose={null}/>
         <CircularIndetermiante show={loading}/>
       </div>
     );
@@ -218,6 +226,9 @@ const mapStateToProps = state => ({
   WalletBrowserData: state.WalletBrowserData,
   loading: state.ui.loading,
   loadingMessage: state.ui.loadingMessage,
-  showModal: state.ui.showModal
+  openModal: state.ui.showModal
 })
-export default connect(mapStateToProps)(withStyles(styles)(MainPayment));
+
+export default connect(mapStateToProps, {
+  startLoading, stopLoading, showModal, closeModal
+})(withStyles(styles)(MainPayment));
