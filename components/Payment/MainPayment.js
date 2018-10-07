@@ -151,14 +151,18 @@ class MainPayment extends Component {
       const stablePay = getContractInstance('stablePay', STABLEPAY);
       console.log('444');
 
-      await stablePay.methods.payToken(
+      console.log('this.state.signedOrder ', this.state.signedOrder);
+      console.log('this.state.receiverAccount ', this.state.receiverAccount);
+      console.log('stablePay.methods ', stablePay.methods);
+      const tx = await stablePay.methods.payToken(
         this.state.signedOrder.orderArray,
         this.state.tokenAddress.address,
         DAI,
         this.state.receiverAccount,
         amount.toString(),
         this.state.signedOrder.signature
-      ).send({ from: this.state.currentAccount });
+      ).send({ from: this.state.currentAccount, gas:300000 });
+      console.log(tx);
     }
   }; 
 
