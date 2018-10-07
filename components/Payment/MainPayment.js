@@ -1,3 +1,9 @@
+const { 
+  BigNumber
+} = require('0x.js');
+const {
+  Web3Wrapper
+} = require('@0xproject/web3-wrapper');
 import React, { Component } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -15,9 +21,11 @@ import web3 from '../../web3';
 import { getContractInstance } from '../../web3/contracts/utils';
 import { STABLEPAY, DAI, ZRXTOKEN } from '../../web3/util/addresses'
 import { loadBalance } from '../../store/actions/token';
-import { getTokenAmount } from '../../web3/util/tokenUtils';
+import { getTokenAmount, toBaseUnitAmount } from '../../web3/util/tokenUtils';
+import { UNLIMITED_ALLOWANCE_IN_BASE_UNITS, DECIMALS } from '../../web3/util/constants';
 import CircularIndetermiante from '../common/CircularIndetermiante';
 import SelectWallet from '../common/SelectWallet';
+//import { BigNumber } from 'web3';
 
 const BASE_API_URL = 'https://www.mocky.io/v2/';
 const ETH_ORDER_API = '5bb936213100006c003ed924';
@@ -128,23 +136,27 @@ class MainPayment extends Component {
 
     } else {
       // Using a ERC20
-      
-      const token = getContractInstance('erc20', this.state.tokenAddress);
-      console.log('222');
-      console.log('currentAccount', this.state.currentAccount);
+      console.log('this.state.tokenAddress ', this.state.tokenAddress.address);
+      const token = getContractInstance('erc20', this.state.tokenAddress.address);
+      console.log('currentAccount ', this.state.currentAccount);
+      console.log('STABLEPAY ', STABLEPAY);
+      console.log('this.state.tokenAmount ', this.state.tokenAmount);
+      const amount =  Web3Wrapper.toBaseUnitAmount(new BigNumber(this.state.tokenAmount), DECIMALS);
+
       await token.methods.approve(
         STABLEPAY,
-        this.state.tokenAmount
+        amount.toString()
       ).send({ from: this.state.currentAccount });
       console.log('333');
       const stablePay = getContractInstance('stablePay', STABLEPAY);
       console.log('444');
+
       await stablePay.methods.payToken(
         this.state.signedOrder.orderArray,
-        this.state.tokenAddress,
+        this.state.tokenAddress.address,
         DAI,
         this.state.receiverAccount,
-        this.state.tokenAmount.toString(),
+        amount.toString(),
         this.state.signedOrder.signature
       ).send({ from: this.state.currentAccount });
     }
