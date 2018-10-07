@@ -42,10 +42,11 @@ return(
     <div className={classes.logoImage}>    <LogoImage /></div>
     <div className={classes.logoName}><LogoName /></div>
 
-      <div className="title">Accept CryptoCurrency Payments on your Store</div>
+      <div className="title">Instant and Secure Token Payments Converted to USD</div>
+      
     
       <div className={classes.button}>  <TextButton name="Get started" href='pay'/></div>
-    
+      <h3>Powered by:</h3>
    
     </div>
 
