@@ -127,6 +127,7 @@ class MainPayment extends Component {
 
     if(this.state.tokenName === 'ETH') {
       // Using ETH
+      this.props.showModal('Please wait a moment while we confirm your transaction...');
       const stablePay = getContractInstance('stablePay', STABLEPAY);
 
       const amount =  Web3Wrapper.toBaseUnitAmount(new BigNumber(this.state.tokenAmount), DECIMALS);
@@ -145,6 +146,8 @@ class MainPayment extends Component {
         value: amount.toNumber(),
         gas:300000
       });
+
+      this.props.closeModal();
 
     } else {
       // Using a ERC20
