@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 192 184">
+  <defs>
+    <style>
+      .cls-1 {
+        clip-path: url(#clip-Artboard_1);
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+    </style>
+    <clipPath id="clip-Artboard_1">
+      <rect width="192" height="184"/>
+    </clipPath>
+  </defs>
+  <g id="Artboard_1" data-name="Artboard – 1" class="cls-1">
+    <g id="Group_1128" data-name="Group 1128" transform="translate(-1294 -2165.348)">
+      <g id="ethereum" transform="translate(1308 2170.5)">
+        <g id="Group_554" data-name="Group 554" transform="translate(0)">
+          <g id="Group_553" data-name="Group 553">
+            <path id="Path_1399" data-name="Path 1399" class="cls-2" d="M67.643,51.636,35.9,3.056,4.152,51.636,35.9,100.216ZM35.9,21.722,53.581,48.775,35.9,55.733,18.214,48.775Zm0,44.881L49.051,61.43,35.9,81.555,22.744,61.43Z" transform="translate(-4.152 -2.092)"/>
+            <path id="Path_1400" data-name="Path 1400" class="cls-2" d="M363.681,239.5h30.781V229.4H373.941V219.312h-10.26V229.4a20.188,20.188,0,1,0,0,40.37h10.26a10.094,10.094,0,1,1,0,20.185H343.16v10.092h20.521v10.092h10.26V300.051a20.188,20.188,0,1,0,0-40.37h-10.26a10.094,10.094,0,1,1,0-20.185Z" transform="translate(-234.462 -150.144)"/>
+            <path id="Path_1401" data-name="Path 1401" class="cls-2" d="M86.225,387.926l6.633,6.525H33.42V379.312H23.16v25.231h69.7l-6.633,6.525,7.254,7.135L112.5,399.5,93.479,380.791Z" transform="translate(-17.065 -259.682)"/>
+            <path id="Path_1402" data-name="Path 1402" class="cls-2" d="M218.808,30.277l-6.633-6.525h59.438V38.891h10.26V13.66h-69.7l6.633-6.525L211.554,0,192.536,18.706l19.018,18.706Z" transform="translate(-132.133)"/>
+            <rect id="Rectangle_356" data-name="Rectangle 356" class="cls-2" width="10.26" height="10.092" transform="translate(139.479 48.983)"/>
+            <rect id="Rectangle_357" data-name="Rectangle 357" class="cls-2" width="10.26" height="10.092" transform="translate(6.095 99.446)"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

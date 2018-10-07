@@ -19,14 +19,12 @@ const styles = theme => ({
     marginTop: '30px', 
   }, 
   logoImage: {
-    // display: 'flex',
-    // justifyContent: 'center',
-    marginTop: '100px'
+   
+    marginTop: '50px'
   }, 
   logoName: {
-    // display: 'flex',
-    // justifyContent: 'center',
-    marginTop: '50px'
+ 
+    marginTop: '30px'
   }, 
 
 });
@@ -47,14 +45,16 @@ return(
     
       <div className={classes.button}>  <TextButton name="Get started" href='pay'/></div>
     
-      <div style={{margin: '30px', fontSize: '24px'}}>Supports: </div>
+      <div style={{marginTop: '20px', marginBottom:'10px', fontSize: '24px'}}>Supports: </div>
     
-      <div>
-       <span style={{margin: '30px'}}><img src="../static/trueusd.png" alt="trueusd" width="250" height="60" /></span><img src="../static/dai-2.svg" alt="dai" width="55" height="60" />
+      <div style={{textAlign: 'center'}}>
+
+     <span style={{margin: '5px'}}><img src="../static/dai-2.svg" alt="dai" width="55" height="60"  /></span> 
+     <span style={{margin: '5px'}}><img src="../static/trueusd.svg" alt="trueusd" width="55" height="60" /></span> 
       </div>
    <div></div>
       
-      <div style={{margin: '30px', fontSize: '24px'}}>Powered by:</div>
+      <div style={{marginTop: '20px', marginBottom:'10px', fontSize: '24px'}}>Powered by:</div>
       <div><img src="../static/0x.png" alt="0x" width="50" height="50" /></div>
     </div>
 
@@ -63,7 +63,7 @@ return(
       .title {
         margin: 0;
         width: 100%;
-        padding-top: 80px;
+        // padding-top: 80px;
         line-height: 1.15;
         font-size: 28px;
       }
