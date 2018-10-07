@@ -14,6 +14,13 @@ import { loadBalance } from '../store/actions/token';
 import { fetchOrder } from '../store/actions/order';
 
 class Order extends Component {
+    static async getInitialProps({ query }) {
+        console.log('query', query);
+        const { address } = query;
+ 
+        return { address };
+    }
+
     state = {
         account: null,
         tokenBalance: null,
@@ -23,16 +30,20 @@ class Order extends Component {
     }
 
     async componentDidMount() {
-        const accounts = await web3.eth.getAccounts();
-        const maker = accounts[0];
-        console.log('account from', accounts[0]);
+        // const accounts = await web3.eth.getAccounts();
+        
+        // const maker = accounts[0];
+        const { address } = this.props;
+        console.log('account from', address);
         this.props.startLoading();
-        this._loadBalance(DAI, maker);
+        this._loadBalance(DAI, address);
         await fetchOrder('ETH');
         this.props.stopLoading();
     }
 
     _loadBalance = async (tokenAddress, account) => {
+        if (!account) return;
+
         const balance = await loadBalance(tokenAddress, account);
         this.setState(
             { 
@@ -128,7 +139,8 @@ class Order extends Component {
         return (
             <div>
                   <div>
-                <div>DAI BALANCE</div>
+                <div>DAI BALANCE FOR ADDRESS</div>
+                <div>{this.props.address}</div>
                 <div>{ this.state.tokenBalance}</div>
             </div>
             <div>
