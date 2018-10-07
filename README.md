@@ -2,7 +2,7 @@
 
 ## sample images
 
-![pic1](https://github.com/StablePay/stablepay_ui/blob/master/docs/stablepay1.png =250x)
+![pic1](https://github.com/StablePay/stablepay_ui/blob/master/docs/stablepay1.png=250x)
 
 
 ![pic2](https://github.com/StablePay/stablepay_ui/blob/master/docs/stablepay2.png =250x)
