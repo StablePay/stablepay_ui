@@ -118,23 +118,15 @@ class MainPayment extends Component {
   }
 
    handleClick = async () => {
-    console.log('Click Confirm');
     // // to use const stablePay = getContractInstance('StablePay', STABLEPAY);
-    
     console.log('Current State');
     console.log(this.state);
-    /*console.log(this.state.tokenAddress);
-    console.log(this.state.tokenName);
-    console.log(this.state.tokenBalance);
-    console.log(this.state.tokenAmount);
-    console.log(this.state.currentAccount);
-    console.log(this.state.signedOrder);
-    */
+
     if(this.state.tokenName === 'ETH') {
       // Using ETH
-
       const stablePay = getContractInstance('stablePay', STABLEPAY);
-      console.log('444');
+
+      const amount =  Web3Wrapper.toBaseUnitAmount(new BigNumber(this.state.tokenAmount), DECIMALS);
 
       console.log('this.state.signedOrder ', this.state.signedOrder);
       console.log('this.state.receiverAccount ', this.state.receiverAccount);
@@ -164,9 +156,8 @@ class MainPayment extends Component {
         STABLEPAY,
         amount.toString()
       ).send({ from: this.state.currentAccount });
-      console.log('333');
+
       const stablePay = getContractInstance('stablePay', STABLEPAY);
-      console.log('444');
 
       console.log('this.state.signedOrder ', this.state.signedOrder);
       console.log('this.state.receiverAccount ', this.state.receiverAccount);
@@ -179,7 +170,6 @@ class MainPayment extends Component {
         amount.toString(),
         this.state.signedOrder.signature
       ).send({ from: this.state.currentAccount, gas:300000 });
-      console.log(tx);
     }
   }; 
 
