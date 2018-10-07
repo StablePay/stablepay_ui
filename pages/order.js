@@ -26,7 +26,7 @@ class Order extends Component {
         account: null,
         tokenBalance: null,
         tokenAddress: null,
-        daiAmount: 5,
+        daiAmount: 100,
         expirationHours: 240,
         allowanceAmount: null
     }
