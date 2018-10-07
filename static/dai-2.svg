@@ -1,1 +1,16 @@
-<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 628.3 628.3" width="2500" height="2500"><title>dai</title><circle cx="314.15" cy="314.15" r="309" fill="#fff" stroke="#ffce45" stroke-miterlimit="10" stroke-width="10.3"/><path fill="#ffce45" d="M314.152 72.307L550.856 309.01 314.152 545.715 77.448 309.01z"/><path fill="#febe44" d="M314.15 386.25L77.25 309l236.9-236.7L551.05 309l-236.9 77.25z"/><path fill="#fff" d="M159.65 293.55H267.8l46.35-51.5 51.5 51.5H473.8L314.15 121.03l-154.5 172.52z"/><path fill="#d9a547" opacity=".42" d="M314.15 545.7V72.3L550.85 309l-236.7 236.7z"/></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="145px" height="145px" viewBox="0 0 145 145" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>Artboard</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="dai-2" transform="translate(10.000000, 9.000000)" fill-rule="nonzero">
+            <circle id="Oval" stroke="#FFCE45" stroke-width="10.3" fill="#FFFFFF" cx="62.5" cy="62.5" r="62.5"></circle>
+            <polygon id="Shape" fill="#FFCE45" points="63 13.671875 111 61.5232353 63 109.375 15 61.5232353"></polygon>
+            <polygon id="Shape" fill="#FEBE44" points="63 77.1484375 15 61.5295031 63 13.671875 111 61.5295031"></polygon>
+            <polygon id="Shape" fill="#FFFFFF" points="31 58.59375 52.6885246 58.59375 61.9836066 48.0990429 72.3114754 58.59375 94 58.59375 61.9836066 23.4375"></polygon>
+            <polygon id="Shape" fill="#D9A547" opacity="0.42" points="62 109.375 62 13.671875 110 61.5234375 62 109.375"></polygon>
+        </g>
+    </g>
+</svg>

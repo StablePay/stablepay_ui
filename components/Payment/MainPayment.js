@@ -25,6 +25,7 @@ import { getTokenAmount, toBaseUnitAmount } from '../../web3/util/tokenUtils';
 import { UNLIMITED_ALLOWANCE_IN_BASE_UNITS, DECIMALS } from '../../web3/util/constants';
 import CircularIndetermiante from '../common/CircularIndetermiante';
 import SelectWallet from '../common/SelectWallet';
+
 //import { BigNumber } from 'web3';
 
 const BASE_API_URL = 'https://www.mocky.io/v2/';
@@ -214,6 +215,7 @@ class MainPayment extends Component {
 
         <LoadingIndicator show={openModal} description={loadingMessage} onClose={null}/>
         <CircularIndetermiante show={loading}/>
+   
       </div>
     );
   }
