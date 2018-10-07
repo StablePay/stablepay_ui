@@ -46,12 +46,13 @@ class MainPayment extends Component {
     tokenBalance: null,
     tokenAmount: null,
     currentAccount: null,
-    signedOrder: null
+    signedOrder: null,
+    receiverAccount: '0xe1f8fea4699ce3e0196923e6fa16f773600e59e0'
   }
 
   async componentDidMount() {
     const accounts = await web3.eth.getAccounts();
-    this.setState({currentAccount: accounts[0]});
+    this.setState({currentAccount: accounts[0] });
   }
 
   async fetchOrder (apiOrderId) {
@@ -130,10 +131,11 @@ class MainPayment extends Component {
       
       const token = getContractInstance('erc20', this.state.tokenAddress);
       console.log('222');
+      console.log('currentAccount', this.state.currentAccount);
       await token.methods.approve(
         STABLEPAY,
         this.state.tokenAmount
-      );
+      ).send({ from: this.state.currentAccount });
       console.log('333');
       const stablePay = getContractInstance('stablePay', STABLEPAY);
       console.log('444');
@@ -141,10 +143,10 @@ class MainPayment extends Component {
         this.state.signedOrder.orderArray,
         this.state.tokenAddress,
         DAI,
-        this.state.currentAccount,
+        this.state.receiverAccount,
         this.state.tokenAmount.toString(),
         this.state.signedOrder.signature
-      );
+      ).send({ from: this.state.currentAccount });
     }
   }; 
 
