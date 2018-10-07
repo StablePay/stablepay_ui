@@ -43,7 +43,7 @@ class MyDocument extends Document {
 
         </Head>
        
-          <body>
+          <body style={{backgroundColor: '#fff'}}>
             <Main />
             <NextScript />
           </body>
