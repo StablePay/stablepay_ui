@@ -191,7 +191,7 @@ class MainPayment extends Component {
         />
         <DetailPayment exchangeAmount={this.state.tokenAmount} tokenName={this.state.tokenName} />
         <div className={classes.button}>  
-          <TextButton name="Confirm Payment" onClick={this._handleClick}/>
+          <TextButton name="Confirm Payment" onClick={this.handleClick}/>
         </div>
 
         <LoadingIndicator show={showModal} description={loadingMessage} onClose={null}/>
