@@ -46,8 +46,16 @@ return(
       
     
       <div className={classes.button}>  <TextButton name="Get started" href='pay'/></div>
-      <h3>Powered by:</h3>
-   
+    
+      <div style={{margin: '30px', fontSize: '24px'}}>Supports: </div>
+    
+      <div>
+       <span style={{margin: '30px'}}><img src="../static/trueusd.png" alt="trueusd" width="250" height="60" /></span><img src="../static/dai-2.svg" alt="dai" width="55" height="60" />
+      </div>
+   <div></div>
+      
+      <div style={{margin: '30px', fontSize: '24px'}}>Powered by:</div>
+      <div><img src="../static/0x.png" alt="0x" width="50" height="50" /></div>
     </div>
 
     <style jsx>{`
