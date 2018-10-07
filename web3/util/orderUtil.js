@@ -21,7 +21,7 @@ export const getRandomFutureDateInSeconds = () => {
 
 
 export const getExpirationTime = (hours) => {
-    return new BigNumber(Date.now() + (hours * 60)).div(ONE_SECOND_MS).ceil();
+    return new BigNumber(Date.now() + (hours * 60 * 1000 * 60 * 60)).div(ONE_SECOND_MS).ceil();
 };
 
 // order = {

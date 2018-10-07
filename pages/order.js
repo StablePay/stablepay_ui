@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { Web3Wrapper } from '@0xproject/web3-wrapper';
 import {
     ContractWrappers, BigNumber,
 } from '0x.js';
 import web3 from '../web3';
 import { KOVAN_CONFIGS } from '../web3/util/configs';
 import { EXCHANGE, ZRXTOKEN, DAI, WETH9 } from '../web3/util/addresses';
-import { NULL_ADDRESS, ZERO } from '../web3/util/constants';
+import { NULL_ADDRESS, ZERO, DECIMALS } from '../web3/util/constants';
 import { createOrder, getRandomFutureDateInSeconds, getExpirationTime } from '../web3/util/orderUtil';
 import { startLoading, stopLoading } from '../store/actions/ui';
 import { loadBalance } from '../store/actions/token';
@@ -26,18 +27,28 @@ class Order extends Component {
         tokenBalance: null,
         tokenAddress: null,
         daiAmount: 5,
-        expirationHours: 240
+        expirationHours: 240,
+        allowanceAmount: null
     }
 
     async componentDidMount() {
-        // const accounts = await web3.eth.getAccounts();
-        
-        // const maker = accounts[0];
-        const { address } = this.props;
+        const accounts = await web3.eth.getAccounts();
+        const maker = accounts[0];
+        const address = this.props.address || maker;
         console.log('account from', address);
         this.props.startLoading();
         this._loadBalance(DAI, address);
         await fetchOrder('ETH');
+
+        const contractWrappers = new ContractWrappers(web3.currentProvider, { networkId: KOVAN_CONFIGS.networkId });
+        const allowance = await contractWrappers.erc20Token.getProxyAllowanceAsync(DAI, address);
+    
+        const allowanceAmount = Web3Wrapper.toUnitAmount(allowance, DECIMALS);
+
+        this.setState({
+            allowanceAmount: allowanceAmount.toNumber()
+        });
+
         this.props.stopLoading();
     }
 
@@ -158,7 +169,10 @@ class Order extends Component {
                 </div>
                  
             </div>
-
+            <div>
+                <div>Proxy Allowance</div>
+                <div>{ this.state.allowanceAmount}</div>
+            </div>
         </div>
           
         );
