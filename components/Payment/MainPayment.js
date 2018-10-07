@@ -13,8 +13,9 @@ import LoadingIndicator from '../common/LoadingIndicator';
 import { ERC20_MAP } from '../../web3/util/addresses';
 import web3 from '../../web3';
 import { getContractInstance } from '../../web3/contracts/utils';
-import { STABLEPAY } from '../../web3/util/addresses'
+import { STABLEPAY, DAI, ZRXTOKEN } from '../../web3/util/addresses'
 import { loadBalance } from '../../store/actions/token';
+import { getTokenAmount } from '../../web3/util/tokenUtils';
 import CircularIndetermiante from '../common/CircularIndetermiante';
 import SelectWallet from '../common/SelectWallet';
 
@@ -43,6 +44,7 @@ class MainPayment extends Component {
     tokenName: null,
     tokenAddress: null,
     tokenBalance: null,
+    tokenAmount: null,
     currentAccount: null,
     signedOrder: null
   }
@@ -60,44 +62,91 @@ class MainPayment extends Component {
     return res.data;
 }
 
-  async onChangeToken(value) {
+  onChangeToken = async (value) => {
     startLoading();
     console.log('Token ', value);
     let balance = 0;
-    let erc20Address = null;
+    let erc20 = null;
     let signedOrder = null;
+    let tokenAmount = null;
     if(value === 'ETH') {
       // Option ETH selected. 
        balance = await loadBalance(null, this.state.currentAccount);
        signedOrder = await this.fetchOrder(ETH_ORDER_API);
+       tokenAmount = await this.calculateTokensAmount('ethereum');
     } else {
       // Option ERC20 selected.
-      erc20Address = ERC20_MAP[value];
-      balance = await loadBalance(erc20Address, this.state.currentAccount);
+      erc20 = ERC20_MAP[value];
+      balance = await loadBalance(erc20.address, this.state.currentAccount);
       signedOrder = await this.fetchOrder(ZRX_ORDER_API);
+      tokenAmount = await this.calculateTokensAmount(erc20.code);
     }
     console.log(`Token Name:      ${value}.`);
-    console.log(`Token Address:   ${erc20Address}.`);
+    console.log(`Token Address:   ${JSON.stringify(erc20)}.`);
     console.log(`Token Balance:   ${balance}.`);
+    console.log(`Tokens Amount:   ${tokenAmount}.`);
     console.log(`SignedOrder:`);
     console.log(signedOrder);
 
     this.setState({
       tokenName: value,
-      tokenAddress: erc20Address,
+      tokenAddress: erc20,
       tokenBalance: balance,
-      signedOrder: signedOrder 
+      signedOrder: signedOrder,
+      tokenAmount: tokenAmount
     });
     stopLoading();
+  }
+
+  async calculateTokensAmount(token) {
+    const tokenAmount = await getTokenAmount(5, token);
+    console.log('tokenAmount ', tokenAmount);
+    return tokenAmount;
   }
 
   _onChangeWallet(value) {
     console.log('Wallet ', value);
   }
 
- handleClick(){
-    console.log('click button')
-   }; 
+   handleClick = async () => {
+    console.log('Click Confirm');
+    // // to use const stablePay = getContractInstance('StablePay', STABLEPAY);
+    
+    console.log('Current State');
+    console.log(this.state);
+    /*console.log(this.state.tokenAddress);
+    console.log(this.state.tokenName);
+    console.log(this.state.tokenBalance);
+    console.log(this.state.tokenAmount);
+    console.log(this.state.currentAccount);
+    console.log(this.state.signedOrder);
+    */
+   console.log('111');
+    if(this.state.tokenName === 'ETH') {
+      // Using ETH
+
+    } else {
+      // Using a ERC20
+      
+      const token = getContractInstance('erc20', this.state.tokenAddress);
+      console.log('222');
+      await token.methods.approve(
+        STABLEPAY,
+        this.state.tokenAmount
+      );
+      console.log('333');
+      const stablePay = getContractInstance('stablePay', STABLEPAY);
+      console.log('444');
+      await stablePay.methods.payToken(
+        this.state.signedOrder.orderArray,
+        this.state.tokenAddress,
+        DAI,
+        this.state.currentAccount,
+        this.state.tokenAmount.toString(),
+        this.state.signedOrder.signature
+      );
+    }
+  }; 
 
   render () {
     const { classes, loading, loadingMessage, showModal,onClose } = this.props;
@@ -122,7 +171,7 @@ class MainPayment extends Component {
           balance={this.state.tokenBalance}
           tokenName={this.state.tokenName}
         />
-        <DetailPayment exchangeAmount={0.5} tokenName="Eth" />
+        <DetailPayment exchangeAmount={this.state.tokenAmount} tokenName={this.state.tokenName} />
   
    
         <div className={classes.button}>  <TextButton name="confirm" onClick={this.handleClick}/></div>

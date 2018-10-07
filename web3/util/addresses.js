@@ -22,7 +22,16 @@ export const ASSETPROXYOWNER = properties.ASSETPROXYOWNER;
 export const ERC20PROXY = properties.ERC20PROXY;
 export const STABLEPAY = properties.STABLEPAY;
 export const ERC20_MAP = {
-    "ZRX": properties.ZRXTOKEN,
-    "DAI": properties.DAI,
-    "WETH9": properties.WETH9
+    "ZRX": {
+        address: properties.ZRXTOKEN,
+        code: '0x'
+    },
+    "DAI": {
+        address: properties.DAI,
+        code: 'dai'
+    },
+    "WETH9": {
+        address: properties.WETH9,
+        code: 'weth'
+    }
 };
